@@ -1,0 +1,369 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#070b20">
+<title>Nocturne — For You</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --blue: #a9caff;
+  --white: #edf3ff;
+  --muted: #8498c6;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+  background: #070b20;
+  color: var(--white);
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.scene {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 35%,
+      rgba(50, 83, 158, .3), transparent 55%),
+    linear-gradient(180deg,
+      #070b20 0%,
+      #101e42 43%,
+      #29375e 70%,
+      #090e22 100%);
+}
+
+.stars {
+  position: absolute;
+  inset: 0;
+  opacity: .8;
+  background-image:
+    radial-gradient(1px 1px at 10% 12%, white 99%, transparent),
+    radial-gradient(2px 2px at 22% 32%, #b9d8ff 99%, transparent),
+    radial-gradient(1px 1px at 45% 16%, white 99%, transparent),
+    radial-gradient(2px 2px at 70% 23%, #c4d7ff 99%, transparent),
+    radial-gradient(1px 1px at 85% 42%, white 99%, transparent),
+    radial-gradient(1px 1px at 31% 60%, white 99%, transparent),
+    radial-gradient(2px 2px at 92% 14%, #a8c8ff 99%, transparent),
+    radial-gradient(1px 1px at 58% 48%, white 99%, transparent);
+  background-size: 190px 210px;
+  animation: starDrift 50s linear infinite;
+}
+
+.moon {
+  position: absolute;
+  top: 12%;
+  right: 15%;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #dce9ff;
+  box-shadow:
+    0 0 25px rgba(174, 205, 255, .5),
+    0 0 80px rgba(110, 155, 255, .22);
+}
+
+.moon::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 35%,
+      rgba(100, 128, 178, .18) 0 7%, transparent 8%),
+    radial-gradient(circle at 65% 65%,
+      rgba(100, 128, 178, .15) 0 10%, transparent 11%);
+}
+
+.horizon {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 36%;
+  background:
+    linear-gradient(160deg,
+      transparent 20%, #10182f 21% 43%,
+      transparent 44%),
+    linear-gradient(20deg,
+      #080e20 30%, #151e39 31% 57%,
+      transparent 58%);
+  clip-path: polygon(
+    0 32%, 13% 17%, 27% 42%, 43% 12%,
+    59% 34%, 75% 8%, 89% 29%, 100% 14%,
+    100% 100%, 0 100%
+  );
+}
+
+.horizon::after {
+  content: "";
+  position: absolute;
+  inset: 30% 0 0;
+  background: linear-gradient(
+    180deg, rgba(105, 139, 203, .1), #070b20
+  );
+}
+
+.glow {
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  width: 90vw;
+  height: 35vh;
+  transform: translate(-50%, -50%);
+  background: rgba(75, 111, 200, .09);
+  filter: blur(65px);
+  border-radius: 50%;
+}
+
+@keyframes starDrift {
+  from { transform: translateY(0); }
+  to { transform: translateY(100px); }
+}
+
+main {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 24px 55px;
+  text-align: center;
+}
+
+.top {
+  position: absolute;
+  top: 35px;
+  left: 0;
+  width: 100%;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: #b7c9ee;
+}
+
+.brand {
+  font-size: 11px;
+  letter-spacing: 6px;
+  color: var(--blue);
+  margin-bottom: 28px;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size: clamp(42px, 11vw, 66px);
+  font-weight: normal;
+  font-style: italic;
+  letter-spacing: -2px;
+  color: #f0f4ff;
+  text-shadow: 0 0 35px rgba(128, 173, 255, .45);
+}
+
+.ornament {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 24px 0;
+  color: var(--blue);
+}
+
+.ornament span {
+  width: 55px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--blue));
+}
+
+.ornament span:last-child {
+  transform: rotate(180deg);
+}
+
+.subtitle {
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: #bdcbed;
+}
+
+.lyric-box {
+  width: 100%;
+  max-width: 600px;
+  min-height: 155px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 52px;
+}
+
+#lyric {
+  font-size: clamp(23px, 5.7vw, 35px);
+  line-height: 1.65;
+  font-style: italic;
+  overflow-wrap: anywhere;
+  color: #eef3ff;
+  text-shadow: 0 0 20px rgba(137, 176, 255, .65);
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 650ms ease,
+    transform 650ms ease;
+}
+
+#lyric.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.bottom {
+  position: absolute;
+  bottom: 28px;
+  left: 0;
+  width: 100%;
+  padding: 0 12px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: #a4b5db;
+}
+
+@media (max-height: 650px) {
+  .brand { margin-bottom: 12px; }
+  .ornament { margin: 12px 0; }
+  .lyric-box { margin-top: 20px; min-height: 100px; }
+  .top { top: 15px; }
+  .bottom { bottom: 12px; }
+  .moon { width: 48px; height: 48px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="scene">
+  <div class="stars"></div>
+  <div class="moon"></div>
+  <div class="glow"></div>
+  <div class="horizon"></div>
+</div>
+
+<header class="top">
+  <span>NOCTURNE</span>
+  <span>FOR YOU / ALWAYS</span>
+</header>
+
+<main>
+  <div class="brand">A little piece of my heart</div>
+
+  <h1>For You.</h1>
+
+  <div class="ornament">
+    <span></span> ✦ <span></span>
+  </div>
+
+  <div class="subtitle">
+    WHERE WORDS MEET THE SILENCE OF THE NIGHT
+  </div>
+
+  <div class="lyric-box">
+    <div id="lyric" aria-live="polite"></div>
+  </div>
+</main>
+
+<footer class="bottom">
+  SOME MEMORIES NEVER FADE
+</footer>
+
+<script>
+"use strict";
+
+// Ubah teks dan durasi di bagian ini.
+// Durasi dihitung dalam milidetik.
+
+const lines = [
+  {
+    text: "Of all the ones that cried their way,",
+    duration: 3000
+  },
+  {
+    text: "I'm still waiting on you.",
+    duration: 3000
+  },
+  {
+    text: "Maybe we seek foor something that,",
+    duration: 3000
+  },
+  {
+    text: "We clouden't ever have.",
+    duration: 3000
+  },
+  {
+    text: "Maybe we choose the only love,",
+    duration: 3000
+  },
+  {
+    text: " we know we won't accept.",
+    duration: 3000
+  }
+  {
+  text: "Or Maybe we're taking all the risk",
+  duration: 3000
+},
+  {
+  text: "for something that is real",
+  duration: 3000
+},
+  {
+  text: "'cause Maybe the greatest love of all",
+  duration: 3000
+},
+  {
+  text: "is who the eyes can't see yeah",
+  duration: 3000
+{
+const lyric = document.getElementById("lyric");
+
+let index = 0;
+let timer;
+
+function showLine() {
+  lyric.classList.remove("show");
+
+  timer = setTimeout(() => {
+    lyric.textContent = lines[index].text;
+    lyric.classList.add("show");
+
+    const duration = lines[index].duration;
+
+    index = (index + 1) % lines.length;
+
+    timer = setTimeout(showLine, duration);
+  }, 3000);
+}
+
+showLine();
+</script>
+
+</body>
+  </html>
+  
